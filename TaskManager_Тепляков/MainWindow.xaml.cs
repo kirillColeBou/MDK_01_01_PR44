@@ -26,7 +26,7 @@ namespace TaskManager_Тепляков
         {
             InitializeComponent();
             init = this;
-            DataContext = new VM_Pages();
+            DataContext = new ViewModels.VM_Pages();
         }
     }
 }
