@@ -17,7 +17,14 @@
     </Page.Resources>
 
     <Grid>
-        <ListView ItemsSource="{Binding Tasks}" HorizontalContentAlignment="Stretch" Margin="0,0,0,45">
+        <TextBox Text="{Binding Search}" Height="30" Width="350" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="18"/>
+        <Button Style="{StaticResource Update}" Command="{Binding OnSearch}" Content="Поиск" Height="30" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="370,10,0,0">
+            <Button.Effect>
+                <DropShadowEffect Opacity="0.5" BlurRadius="3" ShadowDepth="3"/>
+            </Button.Effect>
+        </Button>
+        <ComboBox ItemsSource="{Binding SortValues}" SelectedValue="{Binding Sort}" DisplayMemberPath="Name" SelectedValuePath="Id" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="460,10,0,0" Width="200" Height="30"/>
+        <ListView ItemsSource="{Binding Tasks}" HorizontalContentAlignment="Stretch" Margin="0,50,0,45">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <elements:Item DataContext="{Binding}"/>

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Windows;
 using TaskManager_Тепляков.Classes;
+using TaskManager_Тепляков.Context;
 using Schema = System.ComponentModel.DataAnnotations.Schema;
 
 namespace TaskManager_Тепляков.Models
@@ -27,20 +29,15 @@ namespace TaskManager_Тепляков.Models
             }
         }
 
-        private string priority;
+        private int priorityId;
 
-        public string Priority
+        public int PriorityId
         {
-            get { return priority; }
+            get { return priorityId; }
             set
             {
-                Match match = Regex.Match(value, "^.{1,30}$");
-                if (!match.Success) MessageBox.Show("Приоритет не должен быть пустым, и не более 30 символов!", "Не корректный ввод значения.");
-                else
-                {
-                    priority = value;
-                    OnPropertyChanged("Priority");
-                }
+                priorityId = value;
+                OnPropertyChanged("PriorityId");
             }
         }
 
@@ -165,6 +162,15 @@ namespace TaskManager_Тепляков.Models
                     Done = !Done;
                 });
             }
+        }
+
+        [Schema.NotMapped]
+        public ObservableCollection<Priority> Priority 
+        { 
+            get 
+            { 
+                return new ObservableCollection<Priority>(new PriorityContext().Priority); 
+            } 
         }
     }
 }

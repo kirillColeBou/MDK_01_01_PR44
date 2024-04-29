@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using TaskManager_Тепляков.Classes;
+using TaskManager_Тепляков.Context;
+using TaskManager_Тепляков.Models;
 
 namespace TaskManager_Тепляков.ViewModels
 {
